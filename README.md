@@ -47,5 +47,5 @@ After answering all players in this competition will create statistics, and podi
 
 * Technologies:
     * Django 3.0.8
-    * MySql 14.14
+    * MySql 5.7.30
     
