@@ -32,9 +32,20 @@ After answering all players in this competition will create statistics, and podi
     * scoreboard in quiz
     * users list with a good answer
     * the most frequently chosen answer
+
+## Development:
+
+* Branch naming convention:
+    * F_#Short_description_this_feature - For example F_Create_Django_Project
+    * B_#Short_description_this_bugfix - For example B_Fix_add_user
+
 * How to start project:
     * create virtual environment: `virtualenv venv --python=python3`
     * activate virtualenv: `source venv/bin/activate`
     * instal requirements: `pip install -r requirements.txt`
     * start Django server: `python3 manage.py runserver`
+
+* Technologies:
+    * Django 3.0.8
+    * MySql 5.7.30
     
