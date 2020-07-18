@@ -32,4 +32,9 @@ After answering all players in this competition will create statistics, and podi
     * scoreboard in quiz
     * users list with a good answer
     * the most frequently chosen answer
-
+* How to start project:
+    * create virtual environment: `virtualenv venv --python=python3`
+    * activate virtualenv: `source venv/bin/activate`
+    * instal requirements: `pip install -r requirements.txt`
+    * start Django server: `python3 manage.py runserver`
+    
