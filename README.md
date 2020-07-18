@@ -44,4 +44,8 @@ After answering all players in this competition will create statistics, and podi
     * activate virtualenv: `source venv/bin/activate`
     * instal requirements: `pip install -r requirements.txt`
     * start Django server: `python3 manage.py runserver`
+
+* Technologies:
+    * Django 3.0.8
+    * MySql 14.14
     
