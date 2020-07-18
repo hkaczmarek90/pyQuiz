@@ -1,6 +1,6 @@
 # Project name pyQuiz
 
-* It's a final project from course participants SDAcademy Poland - "Python from scratch". *
+It's a final project from course participants SDAcademy Poland - "Python from scratch".
 
 *The main goals of this project are the opportunity to make a Quiz with our Own group. The Basic functionality will be, creating your Own Quiz and sending the invitation to friends.
 After answering all players in this competition will create statistics, and podium ect.*
