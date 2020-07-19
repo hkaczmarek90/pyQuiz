@@ -78,9 +78,9 @@ DATABASES = {
         {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'pyquiz',
-            'USER': 'admin',
-            'PASSWORD': '12345',
-            'HOST': 'localhost',
+            'USER': 'root',
+            'PASSWORD': 'root',
+            'HOST': 'db',
             'PORT': '3306',
         }
 }
