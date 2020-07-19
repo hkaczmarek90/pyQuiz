@@ -2,12 +2,14 @@ version: '3'
 
 services:
   db:
+    container_name: db
     image: mysql:5.7.31
     environment:
       MYSQL_DATABASE: pyquiz
       MYSQL_ROOT_PASSWORD: root
   web:
     build: .
+    container_name: django
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
