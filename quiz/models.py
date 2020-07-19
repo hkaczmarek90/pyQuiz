@@ -8,3 +8,12 @@ class Question(models.Model):
 
     def __str__(self):
         return self.value
+
+
+class Answer(models.Model):
+    value = models.TextField()
+    correct = models.BooleanField()
+    question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.value
