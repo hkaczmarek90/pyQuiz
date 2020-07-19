@@ -47,7 +47,14 @@ After answering all players in this competition will create statistics, and podi
 ### How to work with Docker
 To run docker env install `docker` and `docker-composer` and to start project run `docker-compose up` command
 
+#### Development scripts
+
+* `make app.db.reset` remove all tables
+* `make app.install` install dependencies
+* `make app.migrate` run database migrations
+* `make app.recreate` recreate application
+
 ### Technology stack:
-    * Django 3.0.8
-    * MySql 5.7.30
-    * Docker
+* Django 3.0.8
+* MySql 5.7.30
+* Docker
