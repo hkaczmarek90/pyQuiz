@@ -51,8 +51,12 @@ To run docker env install `docker` and `docker-composer` and to start project ru
 
 * `make app.db.reset` remove all tables
 * `make app.install` install dependencies
+* `make app.makemigrations` create migrations
 * `make app.migrate` run database migrations
 * `make app.recreate` recreate application
+* `make app.test` start test
+
+
 
 ### Technology stack:
 * Django 3.0.8
