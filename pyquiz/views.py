@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from pyquiz.quiz.models import Quiz
 
 
 def home(request):
@@ -7,3 +8,8 @@ def home(request):
 
 def profile(request):
     return render(request, 'profile_side.html', {'user': request.user})
+
+
+def quizzes(request):
+    quizzes = Quiz.objects.all()
+    return render(request, 'quizzes.html', {'quizzes': quizzes})
