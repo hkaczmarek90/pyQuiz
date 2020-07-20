@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>pyQuiz - All Quizzes</title>
+</head>
+<body>
+        {%for item in quizzes%}
+            <li>{{item.name}}</li>
+        {% endfor %}
+</body>
+</html>
