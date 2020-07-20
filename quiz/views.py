@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from quiz.models import Quiz
 
-# Create your views here.
+
+def quizzes(request):
+    quizzes = Quiz.objects.all()
+
+    return render(request, 'quizzes.html', {'quizzes': quizzes})

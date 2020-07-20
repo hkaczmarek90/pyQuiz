@@ -54,7 +54,7 @@ ROOT_URLCONF = 'pyquiz.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'pyquiz/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'pyquiz/templates'), os.path.join(BASE_DIR, 'quiz/templates')],
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
