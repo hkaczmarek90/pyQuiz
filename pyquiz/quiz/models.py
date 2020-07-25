@@ -34,5 +34,5 @@ class Quiz(models.Model):
 class Test(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     end_date = models.DateTimeField()
-    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    quiz_id = models.ForeignKey(Quiz, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
