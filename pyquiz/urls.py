@@ -21,6 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('quiz/add/', views.create_quiz, name='create_quiz'),
+    path('quiz/save/', views.save_quiz, name='save_quiz'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', views.profile_side, name='profile_side'),
     path('user/quizzes/', views.quizzes, name='quizzes')
