@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from pyquiz.user.models import User
 
 
 class Question(models.Model):
@@ -28,3 +29,10 @@ class Quiz(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Test(models.Model):
+    start_date = models.DateTimeField(auto_now_add=True)
+    end_date = models.DateTimeField()
+    test = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
