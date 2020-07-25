@@ -48,6 +48,12 @@ After answering all players in this competition will create statistics, and podi
 ### How to work with Docker
 To run docker env install `docker` and `docker-composer` and to start project run `docker-compose up` command
 
+For Windows:
+* run docker and start you project `docker-compose up` command
+* paste `docker-machine ip default` command in terminal
+* try start you project using ip (add :8000 at the end - exapmle 192.168.99.100:8000)
+* if still doesn't work, change `ALLOWED_HOST` in settings.py (add `*`)
+
 #### Development scripts
 
 * `make app.db.reset` remove all tables
