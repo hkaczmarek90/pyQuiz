@@ -21,7 +21,7 @@ def save_quiz(request):
     return render(request, 'home.html', {'form': form})
 
 
-def profile_side(request):
+def profile(request):
     return render(request, 'profile_side.html', {'user': request.user})
 
 
