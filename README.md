@@ -37,6 +37,7 @@ After answering all players in this competition will create statistics, and podi
 
 * `F_Short_description_this_feature` - For example F_Create_Django_Project
 * `B_Short_description_this_bugfix` - For example B_Fix_add_user
+* `F_Short_description_this_unit_test` - For example T_Test_for_model
 
 ### How to start project
 * Create virtual environment: `virtualenv venv --python=python3`
