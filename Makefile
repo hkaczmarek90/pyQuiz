@@ -1,7 +1,7 @@
 app.migrate:
 	docker exec -i django python manage.py migrate
 
-app.recreate: app.install app.db.reset app.migrate
+app.recreate: app.install app.db.reset app.migrate app.factories
 
 app.install:
 	docker exec -i django pip install -r requirements.txt
@@ -14,3 +14,6 @@ app.test:
 
 app.makemigrations:
 	docker exec -i django python manage.py makemigrations
+
+app.factories:
+	docker exec -i django python manage.py loaddata initial_data.yaml
