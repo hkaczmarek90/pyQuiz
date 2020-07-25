@@ -22,7 +22,7 @@ class Answer(models.Model):
 class Quiz(models.Model):
     name = models.TextField()
     public = models.BooleanField()
-    description = models.TextField()
+    description = models.TextField(blank=True)
     created_by = models.ForeignKey('auth.User', on_delete=models.DO_NOTHING)
 
     def __str__(self):
