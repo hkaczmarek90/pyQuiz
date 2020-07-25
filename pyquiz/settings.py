@@ -130,3 +130,4 @@ STATICFILES_DIRS = [
     '/pyquiz/bootstrap/css',
     '/pyquiz/bootstrap/js',
 ]
+AUTH_USER_MODEL = 'user.User'
