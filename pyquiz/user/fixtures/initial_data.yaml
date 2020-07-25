@@ -1,0 +1,39 @@
+- model: user.User
+  pk: 1
+  fields:
+    password: test
+    username: usertest
+    first_name: Jan
+    last_name: Testowy
+    email: test@testowy.pl
+
+- model: user.User
+  pk: 2
+  fields:
+    password : test
+    username : rambo
+    first_name : John
+    last_name : Rambo
+    email : john@testowy.pl
+
+- model: user.User
+  pk: 3
+  fields:
+    password : test
+    username : programista
+    first_name : Adam
+    last_name : Programista
+    email : brak@testowy.pl
+
+- model: user.User
+  pk: 4
+  fields:
+    password : root
+    username : root
+    first_name : root
+    last_name : root
+    email : brak@testowy.pl
+    is_superuser: True
+
+
+
