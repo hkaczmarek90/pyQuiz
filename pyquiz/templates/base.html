@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'pyquiz/bootstrap/css/bootstrap.css' %}" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'pyquiz/css/main.css' %}" crossorigin="anonymous">
+    <title>pyQuiz{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>PyQuiz</h1>
+    </header>
+    {% block content %}
+    {% endblock %}
+    <script src="{% static 'pyquiz/jquery-3.5.1.min.js' %}"></script>
+    <script src="{% static 'pyquiz/bootstrap/js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

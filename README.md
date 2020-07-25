@@ -62,3 +62,5 @@ To run docker env install `docker` and `docker-composer` and to start project ru
 * Django 3.0.8
 * MySql 5.7.30
 * Docker
+* jQuery 3.5.1
+* bootstrap 4.5.0
