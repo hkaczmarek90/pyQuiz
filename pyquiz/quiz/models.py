@@ -36,3 +36,4 @@ class Test(models.Model):
     end_date = models.DateTimeField()
     quiz = models.ForeignKey(Quiz, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
