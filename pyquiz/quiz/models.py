@@ -37,3 +37,10 @@ class Test(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.DO_NOTHING)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
+
+class UserAnswer(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    answer_id = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
+    test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
+
