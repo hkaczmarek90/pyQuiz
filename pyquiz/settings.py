@@ -131,3 +131,6 @@ STATICFILES_DIRS = [
     '/pyquiz/bootstrap/js',
 ]
 AUTH_USER_MODEL = 'user.User'
+
+LOGIN_REDIRECT_URL = 'profile_side'
+LOGOUT_REDIRECT_URL = 'profile_side'
