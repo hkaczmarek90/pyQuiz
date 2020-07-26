@@ -1,8 +1,8 @@
+from django.contrib import messages
 from django.shortcuts import (
     render,
     redirect
 )
-from pyquiz.user.models import User
 from pyquiz.quiz.models import Quiz
 from pyquiz.quiz.forms import QuizForm
 from pyquiz.quiz.forms import QuestionForm
@@ -28,12 +28,10 @@ def save_quiz(request):
         else:
             return redirect('home')
     else:
+        messages.add_message(request, messages.INFO, 'Please Sign In To Continue This Action')
+
         return redirect('home')
     return render(request, 'home.html', {'form': form})
-
-
-def profile(request):
-    return render(request, 'profile.html', {'user': request.user})
 
 
 def quizzes(request):
@@ -42,20 +40,13 @@ def quizzes(request):
 
 
 def add_question(request):
-    question = QuestionForm()
-    return render(request, 'add_question.html', {'form': question})
+    return render(request, 'add_question.html', {'form': QuestionForm()})
 
 
 def save_question(request):
-    request.methods = 'POST'
-    form = QuestionForm(request.POST)
-    if request.user.is_authenticated:
-        if form.is_valid():
-            question = form.save(commit=False)
-            question.created_by = request.user
-            question.save()
-        else:
-            return redirect('home')
+    question = QuestionForm(request.POST)
+    if question.is_valid():
+        question.save()
     else:
         return redirect('home')
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'home.html', {'form': question})
