@@ -1,10 +1,10 @@
 - model: quiz.Quiz
   pk: 1
   fields:
-    name: quiz1
+    name: Pierwszy Quiz
     public: 1
-    description: First quiz1
-    created_by: 2
+    description: Quiz o planetach
+    created_by: 1
 
 - model: quiz.Quiz
   pk: 2
@@ -20,3 +20,38 @@
     name: quiz3
     public: 0
     created_by: 1
+
+- model: quiz.Question
+  pk: 1
+  fields:
+    value: Pierwsza planeta od słońca to
+    public: true
+    created_by: 1
+
+- model: quiz.Answer
+  pk: 1
+  fields:
+    value: Wenus
+    correct: false
+    question_id: 1
+
+- model: quiz.Answer
+  pk: 2
+  fields:
+    value: Uran
+    correct: false
+    question_id: 1
+
+- model: quiz.Answer
+  pk: 3
+  fields:
+    value: Merkury
+    correct: true
+    question_id: 1
+
+- model: quiz.Answer
+  pk: 4
+  fields:
+    value: Mars
+    correct: false
+    question_id: 1
