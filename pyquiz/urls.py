@@ -16,11 +16,12 @@ Including another URLconf
 from django.urls import path, include
 from django.contrib import admin
 from pyquiz import views
-
+from pyquiz.user.views import signup
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/profile/', views.profile, name='profile_side'),
-    path('user/quizzes/', views.quizzes, name='quizzes')
+    path('user/quizzes/', views.quizzes, name='quizzes'),
+    path('signup/', signup, name='signup'),
 ]
