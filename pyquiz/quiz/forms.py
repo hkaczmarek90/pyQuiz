@@ -16,4 +16,4 @@ class QuestionForm(forms.ModelForm):
 class QuizForm(ModelForm):
     class Meta:
         model = Quiz
-        fields = '__all__'
+        fields = ['name', 'public', 'description']

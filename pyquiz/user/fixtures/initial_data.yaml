@@ -34,3 +34,4 @@
     last_name : root
     email : brak@testowy.pl
     is_superuser: True
+    is_staff: True
