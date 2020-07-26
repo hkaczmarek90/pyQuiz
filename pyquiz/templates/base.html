@@ -8,11 +8,18 @@
     <title>pyQuiz{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <h1>PyQuiz</h1>
-    </header>
-    {% block content %}
-    {% endblock %}
+    <wrapper>
+        <header>
+            <h1>PyQuiz</h1>
+        </header>
+        <main>
+        {% block content %}
+        {% endblock %}
+        </main>
+        <footer>
+            <p>Created by ....</p>
+        </footer>
+    </wrapper>
     <script src="{% static 'pyquiz/jquery-3.5.1.min.js' %}"></script>
     <script src="{% static 'pyquiz/bootstrap/js/bootstrap.bundle.js' %}"></script>
 </body>

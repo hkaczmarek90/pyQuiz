@@ -1,7 +1,24 @@
-body{
-background-color: red;
+wrapper{
+display: flex;
+flex-direction:column;
+height: 100vh;
 }
 
 header {
 text-align: center;
+border-bottom: solid black 1px;
+padding: 10px 0px;
+}
+
+main {
+margin-top: 10px;
+text-align: center;
+flex-grow:1;
+}
+
+footer {
+margin-top: 10px;
+border-top: solid black 1px;
+text-align: center;
+padding: 10px 0px;
 }
