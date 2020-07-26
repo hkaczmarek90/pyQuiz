@@ -48,9 +48,14 @@ def add_question(request):
 
 def save_question(request):
     request.methods = 'POST'
-    question = QuestionForm(request.POST)
-    if question.is_valid():
-        question.save()
+    form = QuestionForm(request.POST)
+    if request.user.is_authenticated:
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.created_by = request.user
+            question.save()
+        else:
+            return redirect('home')
     else:
         return redirect('home')
-    return render(request, 'home.html', {'form': question})
+    return render(request, 'home.html', {'form': form})
