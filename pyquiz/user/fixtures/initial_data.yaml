@@ -1,6 +1,16 @@
 - model: user.User
   pk: 1
   fields:
+    password : pbkdf2_sha256$180000$tCreVwi2T9h4$0uPcZpA4hLHMK72oJYahQliDy7JO7MyQzC/asyGZix8=
+    username : admin
+    first_name : admin
+    last_name : admin
+    email : brak@testowy.pl
+    is_superuser: True
+    is_staff: True
+- model: user.User
+  pk: 2
+  fields:
     password: test
     username: usertest
     first_name: Jan
@@ -8,7 +18,7 @@
     email: test@testowy.pl
 
 - model: user.User
-  pk: 2
+  pk: 3
   fields:
     password : test
     username : rambo
@@ -17,21 +27,10 @@
     email : john@testowy.pl
 
 - model: user.User
-  pk: 3
+  pk: 4
   fields:
     password : test
     username : programista
     first_name : Adam
     last_name : Programista
     email : brak@testowy.pl
-
-- model: user.User
-  pk: 4
-  fields:
-    password : root
-    username : root
-    first_name : root
-    last_name : root
-    email : brak@testowy.pl
-    is_superuser: True
-    is_staff: True
