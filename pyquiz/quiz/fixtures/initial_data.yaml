@@ -1,0 +1,22 @@
+- model: quiz.Quiz
+  pk: 1
+  fields:
+    name: quiz1
+    public: 1
+    description: First quiz1
+    created_by: 2
+
+- model: quiz.Quiz
+  pk: 2
+  fields:
+    name: quiz2
+    public: 0
+    description: Second quiz2
+    created_by: 3
+
+- model: quiz.Quiz
+  pk: 3
+  fields:
+    name: quiz3
+    public: 0
+    created_by: 1
