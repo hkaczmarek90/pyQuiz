@@ -2,7 +2,7 @@ from django.shortcuts import (
     render,
     redirect
 )
-
+from pyquiz.user.models import User
 from pyquiz.quiz.models import Quiz
 from pyquiz.quiz.forms import QuizForm
 from pyquiz.quiz.forms import QuestionForm
@@ -20,8 +20,13 @@ def create_quiz(request):
 def save_quiz(request):
     request.methods = 'POST'
     form = QuizForm(request.POST)
-    if form.is_valid():
-        form.save()
+    if request.user.is_authenticated:
+        if form.is_valid():
+            quiz = form.save(commit=False)
+            quiz.created_by = request.user
+            quiz.save()
+        else:
+            return redirect('home')
     else:
         return redirect('home')
     return render(request, 'home.html', {'form': form})
