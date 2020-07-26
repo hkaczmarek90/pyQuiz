@@ -8,15 +8,53 @@
     <title>pyQuiz{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <header>
-        <div class="page-header">
-            <a href="{% url 'question_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<header>
+    <div class="page-header">
+        <a href="{% url 'question_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
         <h1>PyQuiz</h1>
+    </div>
+</header>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="{% url 'home' %}">PyQuiz</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Quizzes</a>
+            </li>
+        </ul>
+        <div>
+            {% if user.is_authenticated %}
+                <span class="navbar-text">Logged in as {{ user }}</span>
+                <a class="btn-btn btn-link" href="{% url 'logout' %}" role="button">Logout</a>
+            {% else %}
+                <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login</a>
+                <a class="btn btn-success" href="{% url 'signup' %}" role="button">Register</a>
+            {% endif %}
         </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-    <script src="{% static 'pyquiz/jquery-3.5.1.min.js' %}"></script>
-    <script src="{% static 'pyquiz/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
+
+<script src="{% static 'pyquiz/jquery-3.5.1.min.js' %}"></script>
+<script src="{% static 'pyquiz/bootstrap/js/bootstrap.bundle.js' %}"></script>
+
 </body>
 </html>

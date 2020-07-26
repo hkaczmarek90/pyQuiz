@@ -132,5 +132,5 @@ STATICFILES_DIRS = [
 ]
 AUTH_USER_MODEL = 'user.User'
 
-LOGIN_REDIRECT_URL = 'profile_side'
-LOGOUT_REDIRECT_URL = 'profile_side'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
