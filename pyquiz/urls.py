@@ -9,7 +9,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('signup/', signup, name='signup'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/profile/', views.profile, name='profile'),
     path('user/quizzes/', views.quizzes, name='quizzes'),
     path('quiz/add/', views.create_quiz, name='create_quiz'),
     path('quiz/save/', views.save_quiz, name='save_quiz'),
