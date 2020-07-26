@@ -28,4 +28,7 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile_side'),
     path('user/quizzes/', views.quizzes, name='quizzes'),
     path('signup/', signup, name='signup'),
+    path('user/quizzes/', views.quizzes, name='quizzes'),
+    path('question/new', views.add_question, name='question_new'),
+    path('question/save/', views.save_question, name='save_question'),
 ]
