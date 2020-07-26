@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.forms import modelformset_factory
 
 from pyquiz.quiz.models import Quiz
 from pyquiz.quiz.forms import QuizForm
@@ -17,7 +16,10 @@ def create_quiz(request):
 def save_quiz(request):
     request.methods = 'POST'
     form = QuizForm(request.POST)
-    form.save()
+    if form.is_valid():
+        form.save()
+    else:
+        return redirect('home')
     return render(request, 'home.html', {'form': form})
 
 
