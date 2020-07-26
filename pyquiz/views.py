@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import (
+    render,
+    redirect
+)
 
 from pyquiz.quiz.models import Quiz
 from pyquiz.quiz.forms import QuizForm
+from pyquiz.quiz.forms import QuestionForm
 
 
 def home(request):
@@ -24,9 +28,24 @@ def save_quiz(request):
 
 
 def profile(request):
-    return render(request, 'profile_side.html', {'user': request.user})
+    return render(request, 'profile.html', {'user': request.user})
 
 
 def quizzes(request):
     quizzes = Quiz.objects.all()
     return render(request, 'quizzes.html', {'quizzes': quizzes})
+
+
+def add_question(request):
+    question = QuestionForm()
+    return render(request, 'add_question.html', {'form': question})
+
+
+def save_question(request):
+    request.methods = 'POST'
+    question = QuestionForm(request.POST)
+    if question.is_valid():
+        question.save()
+    else:
+        return redirect('home')
+    return render(request, 'home.html', {'form': question})
