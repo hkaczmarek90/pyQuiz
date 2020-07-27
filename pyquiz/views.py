@@ -18,7 +18,6 @@ def create_quiz(request):
 
 
 def save_quiz(request):
-    request.methods = 'POST'
     form = QuizForm(request.POST)
     if request.user.is_authenticated:
         if form.is_valid():
@@ -35,8 +34,7 @@ def save_quiz(request):
 
 
 def quizzes(request):
-    quizzes = Quiz.objects.all()
-    return render(request, 'quizzes.html', {'quizzes': quizzes})
+    return render(request, 'quizzes.html', {'quizzes': Quiz.objects.all()})
 
 
 def add_question(request):
@@ -45,6 +43,7 @@ def add_question(request):
 
 def save_question(request):
     question = QuestionForm(request.POST)
+
     if question.is_valid():
         question.save()
     else:
