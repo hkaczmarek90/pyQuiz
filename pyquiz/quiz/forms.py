@@ -10,7 +10,7 @@ from pyquiz.quiz.models import (
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
-        fields = ['value', 'public', 'created_by']
+        fields = ['value', 'public']
 
 
 class QuizForm(ModelForm):
