@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include
-
 from pyquiz import views
 from pyquiz.user.views import signup
 
