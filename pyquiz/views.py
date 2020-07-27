@@ -3,6 +3,7 @@ from django.shortcuts import (
     render,
     redirect
 )
+
 from pyquiz.quiz.models import Quiz
 from pyquiz.quiz.forms import QuizForm
 from pyquiz.quiz.forms import QuestionForm
@@ -43,9 +44,13 @@ def add_question(request):
 
 def save_question(request):
     question = QuestionForm(request.POST)
-
-    if question.is_valid():
-        question.save()
+    if request.user.is_authenticated:
+        if question.is_valid():
+            question = question.save(commit=False)
+            question.created_by = request.user
+            question.save()
+        else:
+            return redirect('home')
     else:
-        return redirect('home')
+        messages.add_message(request, messages.INFO, 'Please Sign In To Continue This Action')
     return render(request, 'home.html', {'form': question})
