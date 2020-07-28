@@ -9,7 +9,11 @@ from pyquiz.quiz.forms import QuestionForm
 
 
 def home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated:
+        quizzes = Quiz.objects.all()
+        return render(request, 'home.html', {'quizzes': quizzes})
+    quizzes = Quiz.objects.filter(public=True)
+    return render(request, 'home.html', {'quizzes': quizzes})
 
 
 def create_quiz(request):
