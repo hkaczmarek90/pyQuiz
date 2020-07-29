@@ -1,42 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock %}
+{% block title %} Start {% endblock %}
 
 {% block content %}
-        <h2 class="m-2">Hello !</h2>
-        <h3 class="text-uppercase m-2 card-header">Quizy Publiczne</h3>
-        <div class="d-flex justify-content-start d-flex flex-wrap">
-
-        {%for item in quizzes%}
-            {% if item.public %}
-                <div class="card bg-light m-2" style="width: 18rem;">
-                    <div class="card-header">{{item.name}}</div>
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Created by: {{item.created_by}}</h6>
-                        <p class="card-text">{{item.description}}</p>
-                        <a href="#" class="btn btn-primary">Start Quiz</a>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
-        </div>
-        <h3 class="text-uppercase m-2 card-header">Quizy Prywatne</h3>
-        <div class="d-flex justify-content-start d-flex flex-wrap">
-            {% if user.is_authenticated %}
-            {%for item in quizzes%}
-            {% if not item.public %}
-                <div class="card bg-light m-2" style="width: 18rem;">
-                    <div class="card-header">{{item.name}}</div>
-                    <div class="card-body">
-                        <h6 class="card-subtitle mb-2 text-muted">Created by: {{item.created_by}}</h6>
-                        <p class="card-text">{{item.description}}</p>
-                        <a href="#" class="btn btn-primary">Start Quiz</a>
-                    </div>
-                </div>
-            {% endif %}
-            {% endfor %}
-            {% else %}
-                <p class="m-2">Aby zobaczyć quizy w tej sekcji musisz się zalogować</p>
-            {% endif %}
-        </div>
+       <h1>Hello!</h1>
 {% endblock %}

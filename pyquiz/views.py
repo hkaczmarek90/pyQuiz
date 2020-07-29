@@ -9,11 +9,7 @@ from pyquiz.quiz.forms import QuestionForm
 
 
 def home(request):
-    if request.user.is_authenticated:
-        quizzes = Quiz.objects.all()
-        return render(request, 'home.html', {'quizzes': quizzes})
-    quizzes = Quiz.objects.filter(public=True)
-    return render(request, 'home.html', {'quizzes': quizzes})
+    return render(request, 'home.html')
 
 
 def create_quiz(request):
@@ -41,8 +37,12 @@ def profile(request):
 
 
 def quizzes(request):
-    quizzes = Quiz.objects.all()
+    if request.user.is_authenticated:
+        quizzes = Quiz.objects.all()
+        return render(request, 'quizzes.html', {'quizzes': quizzes})
+    quizzes = Quiz.objects.filter(public=True)
     return render(request, 'quizzes.html', {'quizzes': quizzes})
+
 
 
 def add_question(request):
