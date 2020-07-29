@@ -4,10 +4,8 @@
 <h2>Your question is {{question}}:</h2>
 <form method="POST" action="{%url 'save_answer' id=question.id %}">
     {% csrf_token %}
-    {{ form1.as_p }}
-    {{ form2.as_p }}
-    {{ form3.as_p }}
-    {{ form4.as_p }}
+    {{formset.as_p}}
+
     <input type="submit" class="Save">
 </form>
 

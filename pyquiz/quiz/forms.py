@@ -1,10 +1,11 @@
 from django import forms
 from django.forms import ModelForm
+from django.forms.models import modelformset_factory
 
 from pyquiz.quiz.models import (
     Question,
     Quiz,
-    Answer
+    Answer,
 )
 
 
@@ -14,28 +15,13 @@ class QuestionForm(forms.ModelForm):
         fields = ['value', 'public']
 
 
-class AnswerForm1(forms.ModelForm):
+class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['value', 'correct']
 
 
-class AnswerForm2(forms.ModelForm):
-    class Meta:
-        model = Answer
-        fields = ['value', 'correct']
-
-
-class AnswerForm3(forms.ModelForm):
-    class Meta:
-        model = Answer
-        fields = ['value', 'correct']
-
-
-class AnswerForm4(forms.ModelForm):
-    class Meta:
-        model = Answer
-        fields = ['value', 'correct']
+AnswerFormset = modelformset_factory(Answer, fields=('value', 'correct',))
 
 
 class QuizForm(ModelForm):
