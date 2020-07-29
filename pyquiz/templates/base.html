@@ -9,42 +9,49 @@
     <title>pyQuiz{% block title %}{% endblock %}</title>
 </head>
 <body>
+
+
 <header>
-    <div class="page-header">
-        <a href="{% url 'question_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        <h1>PyQuiz</h1>
-    </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'home' %}">PyQuiz</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'quizzes' %}">Quizzes</a>
+                </li>
+            </ul>
+            <div>
+                {% if user.is_authenticated %}
+                    <span class="navbar-text">Logged in as {{ user }}</span>
+                    <a class="btn-btn btn-link" href="{% url 'logout' %}" role="button">Logout</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login</a>
+                    <a class="btn btn-success" href="{% url 'signup' %}" role="button">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
 </header>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{% url 'home' %}">PyQuiz</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'quizzes' %}">Quizzes</a>
-            </li>
-        </ul>
-        <div>
-            {% if user.is_authenticated %}
-                <span class="navbar-text">Logged in as {{ user }}</span>
-                <a class="btn-btn btn-link" href="{% url 'logout' %}" role="button">Logout</a>
-            {% else %}
-                <a class="btn btn-primary" href="{% url 'login' %}" role="button">Login</a>
-                <a class="btn btn-success" href="{% url 'signup' %}" role="button">Register</a>
-            {% endif %}
-        </div>
-    </div>
-</nav>
-
 <main role="main" class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
 </main>
 
