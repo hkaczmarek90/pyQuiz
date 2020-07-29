@@ -35,8 +35,12 @@ def save_quiz(request):
 
 
 def quizzes(request):
-    return render(request, 'quizzes.html', {'quizzes': Quiz.objects.all()})
-
+    if request.user.is_authenticated:
+        quizzes = Quiz.objects.all()
+        return render(request, 'quizzes.html', {'quizzes': quizzes})
+    quizzes = Quiz.objects.filter(public=True)
+    return render(request, 'quizzes.html', {'quizzes': quizzes})
+  
 
 def add_question(request):
     return render(request, 'add_question.html', {'form': QuestionForm()})

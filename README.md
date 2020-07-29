@@ -44,6 +44,7 @@ After answering all players in this competition will create statistics, and podi
 * Activate virtualenv: `source venv/bin/activate`
 * Install requirements: `pip install -r requirements.txt`
 * Start Django server: `python3 manage.py runserver`
+* Login into admin site: login: admin, user: admin`
     
 ### How to work with Docker
 To run docker env install `docker` and `docker-composer` and to start project run `docker-compose up` command
