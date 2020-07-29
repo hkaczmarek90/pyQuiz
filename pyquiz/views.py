@@ -31,7 +31,7 @@ def save_quiz(request):
         messages.add_message(request, messages.INFO, 'Please Sign In To Continue This Action')
 
         return redirect('home')
-    return render(request, 'home.html', {'form': form})
+    return render(request, 'add_question.html', {'form': form})
 
 
 def quizzes(request):
