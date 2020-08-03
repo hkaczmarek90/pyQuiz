@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from django.forms.models import modelformset_factory
+from django.forms.models import inlineformset_factory
 
 from pyquiz.quiz.models import (
     Question,
@@ -10,6 +10,7 @@ from pyquiz.quiz.models import (
 
 
 class QuestionForm(forms.ModelForm):
+
     class Meta:
         model = Question
         fields = ['value', 'public']
@@ -21,7 +22,7 @@ class AnswerForm(forms.ModelForm):
         fields = ['value', 'correct']
 
 
-AnswerFormset = modelformset_factory(Answer, fields=('value', 'correct',))
+AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=3, max_num=4)
 
 
 class QuizForm(ModelForm):
