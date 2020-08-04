@@ -22,7 +22,7 @@ class AnswerForm(forms.ModelForm):
         fields = ['value', 'correct']
 
 
-AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=3, max_num=4)
+AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4)
 
 
 class QuizForm(ModelForm):
