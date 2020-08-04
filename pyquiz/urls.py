@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.urls import path, include
 from pyquiz import views
-from pyquiz.user.views import signup
+from pyquiz.quiz import views as quiz_views
+from pyquiz.user import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('signup/', signup, name='signup'),
+    path('signup/', user_views.signup, name='signup'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('user/quizzes/', views.quizzes, name='quizzes'),
-    path('quiz/add/', views.create_quiz, name='create_quiz'),
-    path('quiz/save/', views.save_quiz, name='save_quiz'),
-    path('user/quizzes/', views.quizzes, name='quizzes'),
-    path('question/new', views.add_question, name='question_new'),
-    path('question/save/', views.save_question, name='save_question'),
+    path('user/quizzes/', quiz_views.quizzes, name='quizzes'),
+    path('quiz/add/', quiz_views.create_quiz, name='create_quiz'),
+    path('quiz/save/', quiz_views.save_quiz, name='save_quiz'),
+    path('user/quizzes/', quiz_views.quizzes, name='quizzes'),
+    path('question/new', quiz_views.add_question, name='question_new'),
+    path('question/save/', quiz_views.save_question, name='save_question'),
 ]
 
