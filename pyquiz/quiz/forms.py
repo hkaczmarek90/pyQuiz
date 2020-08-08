@@ -6,7 +6,7 @@ from pyquiz.quiz.models import (
     Question,
     Quiz,
     Answer,
-    UserAnswer,
+    TestResult
 )
 
 
@@ -20,6 +20,8 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['value', 'correct']
+
+#        widget = {'value': Textarea(attrs={})}
 
 
 AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4, )
