@@ -5,11 +5,10 @@
 <form method="POST" action="{%url 'save_answer' id=question.id %}">
     {% csrf_token %}
     {{formset.as_p}}
-
     <input type="submit" class="Save">
 
     <button type="button">
-    <a href="{% url 'question_new' %}"> Add next question?</a>
+    <a href="{% url 'question_new' id=question.quiz.id %}"> Add next question?</a>
     </button>
 </form>
 
