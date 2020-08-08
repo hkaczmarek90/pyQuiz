@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h1>Quiz/Question/Answer</h1>
+<form method="post" action="{% url 'start_test' quiz_id=test.quiz.id %}">
+    {% csrf_token %}
+
+
+    {% for question in questions %}
+    <h3>{{question.value}}</h3>
+    <fieldset id={{question.id}}>
+        {% for answer in question.answer_set.all %}
+        <label for="answer">{{answer.value}}</label>
+        <input type="radio" value={{answer.id}} name={{question.id}}>
+        {%endfor%}
+    </fieldset>
+
+    {%endfor%}
+
+
+    <input type="submit" value="Save">
+</form>
+{% endblock %}

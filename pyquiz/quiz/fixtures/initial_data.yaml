@@ -27,31 +27,32 @@
     value: Pierwsza planeta od słońca to
     public: true
     created_by: 2
+    quiz: 1
 
 - model: quiz.Answer
   pk: 1
   fields:
     value: Wenus
     correct: false
-    question_id: 1
+    question: 1
 
 - model: quiz.Answer
   pk: 2
   fields:
     value: Uran
     correct: false
-    question_id: 1
+    question: 1
 
 - model: quiz.Answer
   pk: 3
   fields:
     value: Merkury
     correct: true
-    question_id: 1
+    question: 1
 
 - model: quiz.Answer
   pk: 4
   fields:
     value: Mars
     correct: false
-    question_id: 1
+    question: 1
