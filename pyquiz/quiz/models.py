@@ -15,7 +15,7 @@ class Question(models.Model):
 class Answer(models.Model):
     value = models.CharField(max_length=256)
     correct = models.BooleanField()
-    question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.value
@@ -40,6 +40,6 @@ class Test(models.Model):
 
 class UserAnswer(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
+    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     answer_id = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
     test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
