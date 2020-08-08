@@ -1,12 +1,17 @@
 from django.contrib import messages
+from django.forms import models
 from django.shortcuts import (
     render,
     redirect
 )
+from django.utils import timezone
 
 from pyquiz.quiz.models import (
     Quiz,
     Question,
+    Answer,
+    Test,
+    UserAnswer
 )
 
 from pyquiz.quiz.forms import (
@@ -82,3 +87,19 @@ def save_answer(request, id):
         else:
             return redirect('home')
     return redirect('add_answer', id=question.id)
+
+
+def start_test(request, quiz_id):
+    quiz = Quiz.objects.get(pk=quiz_id)
+    questions = Question.objects.all()
+
+    test = Test.objects.create(quiz=quiz, user=request.user)
+    if request.user.is_authenticated:
+
+        test.save()
+
+    else:
+        messages.add_message(request, messages.INFO, 'Please Sign In To Continue This Action')
+
+    return render(request, 'start_test.html', {'questions': questions,
+                                               'test': test})
