@@ -4,10 +4,15 @@ from django.shortcuts import (
     redirect
 )
 
-from pyquiz.quiz.models import Quiz
+from pyquiz.quiz.models import (
+    Quiz,
+    Question,
+)
+
 from pyquiz.quiz.forms import (
     QuizForm,
     QuestionForm,
+    AnswerFormset,
 )
 
 
@@ -55,4 +60,22 @@ def save_question(request):
             return redirect('home')
     else:
         messages.add_message(request, messages.INFO, 'Please Sign In To Continue This Action')
-    return render(request, 'home.html', {'form': question})
+    return redirect('add_answer', id=question.id)
+
+
+def add_answer(request, id):
+    question = Question.objects.get(pk=id)
+    formset = AnswerFormset(instance=question)
+    return render(request, 'add_answer.html', {'formset': formset,
+                                               'question': question})
+
+
+def save_answer(request, id):
+    question = Question.objects.get(pk=id)
+    if request.method == 'POST':
+        formset = AnswerFormset(request.POST, instance=question)
+        if formset.is_valid():
+            formset.save()
+        else:
+            return redirect('home')
+    return redirect('add_answer', id=question.id)
