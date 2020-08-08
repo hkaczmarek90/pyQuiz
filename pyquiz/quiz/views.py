@@ -17,6 +17,10 @@ from pyquiz.quiz.forms import (
 
 
 def create_quiz(request):
+    if not request.user.is_authenticated:
+        messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
+        return redirect('home')
+
     form = QuizForm()
     return render(request, 'quiz_add.html', {'form': form})
 
@@ -41,8 +45,14 @@ def quizzes(request):
     if request.user.is_authenticated:
         quizzes = Quiz.objects.all()
         return render(request, 'quizzes.html', {'quizzes': quizzes})
-    quizzes = Quiz.objects.filter(public=True)
+        quizzes = Quiz.objects.filter(public=True)
+
+    else:
+        messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
+
+        return redirect('home')
     return render(request, 'quizzes.html', {'quizzes': quizzes})
+
 
 
 def add_question(request):
