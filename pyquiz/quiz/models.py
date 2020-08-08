@@ -4,7 +4,7 @@ from pyquiz.user.models import User
 
 
 class Question(models.Model):
-    value = models.TextField()
+    value = models.CharField(max_length=256)
     public = models.BooleanField()
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
 
@@ -13,7 +13,7 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
-    value = models.TextField()
+    value = models.CharField(max_length=256)
     correct = models.BooleanField()
     question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
 
@@ -22,9 +22,9 @@ class Answer(models.Model):
 
 
 class Quiz(models.Model):
-    name = models.TextField()
+    name = models.CharField(max_length=100)
     public = models.BooleanField()
-    description = models.TextField(blank=True)
+    description = models.CharField(max_length=256, blank=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
 
     def __str__(self):
@@ -43,4 +43,3 @@ class UserAnswer(models.Model):
     question_id = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     answer_id = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
     test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
-
