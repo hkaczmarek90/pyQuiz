@@ -22,6 +22,10 @@ from pyquiz.quiz.forms import (
 
 
 def create_quiz(request):
+    if not request.user.is_authenticated:
+        messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
+        return redirect('home')
+
     form = QuizForm()
     return render(request, 'quiz_add.html', {'form': form})
 
@@ -49,11 +53,6 @@ def quizzes(request):
     quizzes = Quiz.objects.filter(public=True)
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
-
-def add_question(request, id):
-    quiz = Quiz.objects.get(pk=id)
-    form = QuestionForm(instance=quiz)
-    return render(request, 'add_question.html', {"form": form, 'quiz': quiz})
 
 
 def save_question(request, id):
