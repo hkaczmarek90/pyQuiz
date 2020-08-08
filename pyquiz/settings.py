@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 DEBUG = True
 ALLOWED_HOSTS = ['*']
@@ -95,3 +96,5 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = 'user.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_heroku.settings(locals())
