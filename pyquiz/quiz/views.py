@@ -45,12 +45,7 @@ def quizzes(request):
     if request.user.is_authenticated:
         quizzes = Quiz.objects.all()
         return render(request, 'quizzes.html', {'quizzes': quizzes})
-        quizzes = Quiz.objects.filter(public=True)
-
-    else:
-        messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
-
-        return redirect('home')
+    quizzes = Quiz.objects.filter(public=True)
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
 
