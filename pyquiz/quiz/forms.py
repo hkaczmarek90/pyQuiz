@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm
 from django.forms.models import inlineformset_factory
 
 from pyquiz.quiz.models import (
@@ -21,7 +21,6 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields = ['value', 'correct']
 
-
 #        widget = {'value': Textarea(attrs={})}
 
 
@@ -32,3 +31,9 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
         fields = ['name', 'public', 'description']
+
+#
+# class UserAnswerForms(forms.ModelForm):
+#     class Meta:
+#         model = UserAnswer
+#

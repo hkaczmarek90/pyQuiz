@@ -2,9 +2,13 @@
 
 {% block content %}
     <h2>New question</h2>
-    <form method="POST" action="{%url 'save_question'%}">
+    <form method="POST" action="{%url 'save_question' id=quiz.id %}">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" class="Save">
     </form>
+
+    <button class="btn btn-primary" type="button">
+    <a href="{% url 'quizzes' %}"> Finish Quiz </a>
+    </button>
 {% endblock %}
