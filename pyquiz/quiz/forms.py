@@ -6,11 +6,11 @@ from pyquiz.quiz.models import (
     Question,
     Quiz,
     Answer,
+    TestResult
 )
 
 
 class QuestionForm(forms.ModelForm):
-
     class Meta:
         model = Question
         fields = ['value', 'public']
@@ -20,13 +20,21 @@ class AnswerForm(forms.ModelForm):
     class Meta:
         model = Answer
         fields = ['value', 'correct']
+
+
 #        widget = {'value': Textarea(attrs={})}
 
 
-AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4,)
+AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4, )
 
 
 class QuizForm(ModelForm):
     class Meta:
         model = Quiz
         fields = ['name', 'public', 'description']
+
+
+class TestResultForm(forms.ModelForm):
+    class Meta:
+        model = TestResult
+        fields = ('correct_answer', 'wrong_answer', 'test_id')
