@@ -34,13 +34,13 @@ class Answer(models.Model):
 
 class Test(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField()
+    end_date = models.DateTimeField(null=True)
     quiz = models.ForeignKey(Quiz, on_delete=models.DO_NOTHING)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
 
 
 class UserAnswer(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING)
     question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
     answer_id = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
     test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
