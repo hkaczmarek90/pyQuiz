@@ -11,7 +11,6 @@ from pyquiz.quiz.models import (
 
 
 class QuestionForm(forms.ModelForm):
-
     class Meta:
         model = Question
         fields = ['value', 'public']
@@ -23,7 +22,7 @@ class AnswerForm(forms.ModelForm):
         fields = ['value', 'correct']
 
 
-AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4,)
+AnswerFormset = inlineformset_factory(Question, Answer, fields=('value', 'correct',), extra=4, max_num=4, )
 
 
 class QuizForm(ModelForm):
@@ -36,4 +35,3 @@ class QuizForm(ModelForm):
 #     class Meta:
 #         model = UserAnswer
 #
-

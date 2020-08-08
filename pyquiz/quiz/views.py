@@ -94,7 +94,6 @@ def start_test(request, quiz_id):
     questions = Question.objects.all()
 
     test = Test.objects.create(quiz=quiz, user=request.user)
-
     if request.user.is_authenticated:
 
         test.save()

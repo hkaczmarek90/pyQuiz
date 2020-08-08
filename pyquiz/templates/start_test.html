@@ -6,22 +6,16 @@
 <form method="post" action="{% url 'start_test' quiz_id=test.quiz.id %}">
     {% csrf_token %}
 
-    {{questions}}
 
     {% for question in questions %}
-        <h3>{{question.value}}</h3>
-    <fieldset id="question" name='question'>
-        {% for answer in question.answer_set %}
-        <label for="answer">{{answer.vale}}</label>
-        <input type="radio" value="answer.pk" name="answers">
-        <label for="answer">{{answer.vale}}</label>
-        <input type="radio" value="answer.pk" name="answers">
-        <label for="answer">{{answer.vale}}</label>
-        <input type="radio" value="answer.pk" name="answers">
-        <label for="answer">{{answer.vale}}</label>
-        <input type="radio" value="answer.pk" name="answers">
+    <h3>{{question.value}}</h3>
+    <fieldset id={{question.id}}>
+        {% for answer in question.answer_set.all %}
+        <label for="answer">{{answer.value}}</label>
+        <input type="radio" value={{answer.id}} name={{question.id}}>
+        {%endfor%}
     </fieldset>
-    {%endfor%}
+
     {%endfor%}
 
 
