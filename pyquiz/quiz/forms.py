@@ -32,9 +32,3 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
         fields = ['name', 'public', 'description']
-
-
-class TestResultForm(forms.ModelForm):
-    class Meta:
-        model = TestResult
-        fields = ('correct_answer', 'wrong_answer', 'test_id')

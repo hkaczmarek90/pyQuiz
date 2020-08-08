@@ -38,14 +38,7 @@ class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
 
 
-class UserAnswer(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    question = models.ForeignKey(Question, on_delete=models.DO_NOTHING)
-    answer_id = models.ForeignKey(Answer, on_delete=models.DO_NOTHING)
-    test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
-
-
 class TestResult(models.Model):
     correct_answer = models.IntegerField(default=0)
     wrong_answer = models.IntegerField(default=0)
-    test_id = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
+    test = models.ForeignKey(Test, on_delete=models.DO_NOTHING)
