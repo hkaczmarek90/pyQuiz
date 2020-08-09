@@ -1,17 +1,13 @@
 from django.contrib import messages
-from django.forms import models
 from django.shortcuts import (
     render,
     redirect
 )
-from django.utils import timezone
 
 from pyquiz.quiz.models import (
     Quiz,
     Question,
-    Answer,
-    Test,
-    UserAnswer
+    Test
 )
 
 from pyquiz.quiz.forms import (
@@ -54,7 +50,6 @@ def quizzes(request):
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
 
-
 def save_question(request, id):
     question = QuestionForm(request.POST)
     if request.user.is_authenticated:
@@ -75,6 +70,12 @@ def add_answer(request, id):
     formset = AnswerFormset(instance=question)
     return render(request, 'add_answer.html', {'formset': formset,
                                                'question': question})
+
+
+def add_question(request, id):
+    quiz = Quiz.objects.get(pk=id)
+    form = QuestionForm(instance=quiz)
+    return render(request, 'add_question.html', {"form": form, 'quiz': quiz})
 
 
 def save_answer(request, id):
