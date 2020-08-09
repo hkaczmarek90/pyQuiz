@@ -1,9 +1,17 @@
 import os
+import dotenv
+import django_heroku
+import dj_database_url
 
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'sh66z12r#4o5yh8^0y3eb@27s*ne7aj*r344ti+-wk#p#3*==2'
+
+dotenv_file = os.path.join(BASE_DIR, ".env")
+
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -51,18 +59,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pyquiz.wsgi.application'
-
-DATABASES = {
-    'default':
-        {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'pyquiz',
-            'USER': 'root',
-            'PASSWORD': 'root',
-            'HOST': 'db',
-            'PORT': '3306',
-        }
-}
+DATABASES = {'default': dj_database_url.config()}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -95,3 +92,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 AUTH_USER_MODEL = 'user.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
