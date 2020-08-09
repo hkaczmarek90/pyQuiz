@@ -18,6 +18,6 @@ urlpatterns = [
     path('quiz/<int:id>/question/new/', quiz_views.add_question, name='question_new'),
     path('quiz/<int:id>/question/save/', quiz_views.save_question, name='save_question'),
     path('test/<int:quiz_id>/', quiz_views.start_test, name='start_test'),
-
+    path('result/test/<int:test_result_id>/', quiz_views.show_test_result, name='test_result'),
 ]
 
