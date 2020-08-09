@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import (
     render,
     redirect
@@ -6,6 +8,7 @@ from django.shortcuts import (
 
 from pyquiz.quiz.models import (
     Quiz,
+    Answer,
     Question,
     Test,
     TestResult
@@ -18,6 +21,7 @@ from pyquiz.quiz.forms import (
 )
 
 
+@login_required
 def create_quiz(request):
     if not request.user.is_authenticated:
         messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
@@ -27,6 +31,7 @@ def create_quiz(request):
     return render(request, 'quiz_add.html', {'form': form})
 
 
+@login_required
 def save_quiz(request):
     form = QuizForm(request.POST)
     if request.user.is_authenticated:
@@ -51,6 +56,7 @@ def quizzes(request):
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
 
+@login_required
 def save_question(request, id):
     question = QuestionForm(request.POST)
     if request.user.is_authenticated:
@@ -66,6 +72,7 @@ def save_question(request, id):
     return redirect('add_answer', id=question.id)
 
 
+@login_required
 def add_answer(request, id):
     question = Question.objects.get(pk=id)
     formset = AnswerFormset(instance=question)
@@ -73,12 +80,14 @@ def add_answer(request, id):
                                                'question': question})
 
 
+@login_required
 def add_question(request, id):
     quiz = Quiz.objects.get(pk=id)
     form = QuestionForm(instance=quiz)
     return render(request, 'add_question.html', {"form": form, 'quiz': quiz})
 
 
+@login_required
 def save_answer(request, id):
     question = Question.objects.get(pk=id)
     if request.method == 'POST':
@@ -90,9 +99,10 @@ def save_answer(request, id):
     return redirect('add_answer', id=question.id)
 
 
+@login_required
 def start_test(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
-    questions = Question.objects.all()
+    questions = Question.objects.filter(quiz_id=quiz_id)
 
     test = Test.objects.create(quiz=quiz, user=request.user)
     if request.user.is_authenticated:
@@ -106,10 +116,23 @@ def start_test(request, quiz_id):
                                                'test': test})
 
 
+def results_save(request, test_id):
+    test = Test.objects.get(pk=test_id)
+    answers = list(request.POST.values())
+
+    correct_answers = Answer.objects.filter(correct=True).filter(pk__in=answers).count()
+
+    test_results = TestResult(wrong_answer=len(answers) - correct_answers, correct_answer=correct_answers,
+                              test=test)
+    test_results.save()
+
+    return redirect("test_result", test_result_id=test_results.id)
+
+
 def show_test_result(request, test_result_id):
     test_result = TestResult.objects.get(pk=test_result_id)
     percent_test_score = int(test_result.correct_answer / (test_result.correct_answer + test_result.wrong_answer) * 100)
-    result_comment = ""
+
     if percent_test_score < 30:
         result_comment = "Mogło byś lepiej"
     elif 30 < percent_test_score < 70:
