@@ -102,7 +102,7 @@ def save_answer(request, id):
 @login_required
 def start_test(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
-    questions = Question.objects.all
+    questions = Question.objects.filter(quiz_id=quiz_id)
 
     test = Test.objects.create(quiz=quiz, user=request.user)
     if request.user.is_authenticated:
