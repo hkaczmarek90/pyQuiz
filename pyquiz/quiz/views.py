@@ -7,7 +7,8 @@ from django.shortcuts import (
 from pyquiz.quiz.models import (
     Quiz,
     Question,
-    Test
+    Test,
+    TestResult
 )
 
 from pyquiz.quiz.forms import (
@@ -103,3 +104,10 @@ def start_test(request, quiz_id):
 
     return render(request, 'start_test.html', {'questions': questions,
                                                'test': test})
+
+
+def show_test_result(request, test_result_id):
+    test_result = TestResult.objects.get(pk=test_result_id)
+    percent_test_score = int(test_result.correct_answer / (test_result.correct_answer + test_result.wrong_answer) * 100)
+    return render(request, 'test_result.html', {'test_result': test_result,
+                                                'percent_test_score': percent_test_score})

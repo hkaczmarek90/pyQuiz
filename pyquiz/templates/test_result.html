@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Wyniki Quizu: {{test_result.test.quiz.name}}</h2>
+
+    <p>Poprawych odpowiedzi: {{test_result.correct_answer}}</p>
+    <p>Niepoprawych odpowiedzi: {{test_result.wrong_answer}}</p>
+    <p>Twój wynik testu to : {{ percent_test_score}} %</p>
+
+{% endblock %}
