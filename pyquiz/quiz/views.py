@@ -126,7 +126,7 @@ def results_save(request, test_id):
                               test=test)
     test_results.save()
 
-    return render(request, "home.html")
+    return redirect("test_result", test_result_id=test_results.id)
 
 
 def show_test_result(request, test_result_id):
