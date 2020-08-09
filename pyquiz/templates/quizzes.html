@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h6 class="card-subtitle mb-2 text-muted">Created by: {{ item.created_by }}</h6>
                         <p class="card-text">{{ item.description }}</p>
-                        <a href="#" class="btn btn-primary">Start Quiz</a>
+                        <a href="{% url 'start_test' quiz_id=item.id %}" class="btn btn-primary">Start Quiz</a>
                     </div>
                 </div>
             {% endif %}
@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <h6 class="card-subtitle mb-2 text-muted">Created by: {{ item.created_by }}</h6>
                             <p class="card-text">{{ item.description }}</p>
-                            <a href="#" class="btn btn-primary">Start Quiz</a>
+                            <a href="{% url 'start_test' quiz_id=item.id %}" class="btn btn-primary">Start Quiz</a>
                         </div>
                     </div>
                 {% endif %}

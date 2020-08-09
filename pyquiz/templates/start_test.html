@@ -1,24 +1,38 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 {% block content %}
-<h1>Quiz/Question/Answer</h1>
-<form method="post" action="{% url 'start_test' quiz_id=test.quiz.id %}">
-    {% csrf_token %}
+    <div class="container">
+        <h1 style="margin-bottom: 20px">Test for quiz {{ test.quiz.name }}</h1>
+        <form method="post" action="{% url 'start_test' quiz_id=test.quiz.id %}">
+            {% csrf_token %}
 
 
-    {% for question in questions %}
-    <h3>{{question.value}}</h3>
-    <fieldset id={{question.id}}>
-        {% for answer in question.answer_set.all %}
-        <label for="answer">{{answer.value}}</label>
-        <input type="radio" value={{answer.id}} name={{question.id}}>
-        {%endfor%}
-    </fieldset>
+            {% for question in questions %}
+                <div class="question">
+                    <h5>Question # {{ forloop.counter }}: {{ question.value }}</h5>
+                    <div class="row">
+                        {% for answer in question.answer_set.all %}
+                            <div class="col-md-6">
+                                <fieldset id={{ question.id }}>
+                                    <input required id="answer-{{ answer.id }}" type="radio"
+                                           class="question__answer_input"
+                                           value={{ answer.id }} name={{ question.id }}>
+                                    <label for="answer-{{ answer.id }}"
+                                           class="question__answer">{{ answer.value }}</label>
+                                </fieldset>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
 
-    {%endfor%}
+            {% endfor %}
 
+            <div class="row">
+                <div class="col-md-2 offset-md-5">
+                    <input type="submit" class="btn btn-success" value="Submit results">
+                </div>
+            </div>
 
-    <input type="submit" value="Save">
-</form>
+        </form>
+    </div>
 {% endblock %}

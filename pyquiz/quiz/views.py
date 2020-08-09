@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 from django.shortcuts import (
     render,
     redirect
@@ -18,6 +20,7 @@ from pyquiz.quiz.forms import (
 )
 
 
+@login_required
 def create_quiz(request):
     if not request.user.is_authenticated:
         messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
@@ -27,6 +30,7 @@ def create_quiz(request):
     return render(request, 'quiz_add.html', {'form': form})
 
 
+@login_required
 def save_quiz(request):
     form = QuizForm(request.POST)
     if request.user.is_authenticated:
@@ -51,6 +55,7 @@ def quizzes(request):
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
 
+@login_required
 def save_question(request, id):
     question = QuestionForm(request.POST)
     if request.user.is_authenticated:
@@ -66,6 +71,7 @@ def save_question(request, id):
     return redirect('add_answer', id=question.id)
 
 
+@login_required
 def add_answer(request, id):
     question = Question.objects.get(pk=id)
     formset = AnswerFormset(instance=question)
@@ -73,12 +79,14 @@ def add_answer(request, id):
                                                'question': question})
 
 
+@login_required
 def add_question(request, id):
     quiz = Quiz.objects.get(pk=id)
     form = QuestionForm(instance=quiz)
     return render(request, 'add_question.html', {"form": form, 'quiz': quiz})
 
 
+@login_required
 def save_answer(request, id):
     question = Question.objects.get(pk=id)
     if request.method == 'POST':
@@ -90,6 +98,7 @@ def save_answer(request, id):
     return redirect('add_answer', id=question.id)
 
 
+@login_required
 def start_test(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
     questions = Question.objects.all()
