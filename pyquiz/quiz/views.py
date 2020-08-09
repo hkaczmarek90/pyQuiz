@@ -8,6 +8,7 @@ from django.shortcuts import (
 
 from pyquiz.quiz.models import (
     Quiz,
+    Answer,
     Question,
     Test,
     TestResult
@@ -101,7 +102,7 @@ def save_answer(request, id):
 @login_required
 def start_test(request, quiz_id):
     quiz = Quiz.objects.get(pk=quiz_id)
-    questions = Question.objects.all()
+    questions = Question.objects.all
 
     test = Test.objects.create(quiz=quiz, user=request.user)
     if request.user.is_authenticated:
@@ -115,10 +116,23 @@ def start_test(request, quiz_id):
                                                'test': test})
 
 
+def results_save(request, test_id):
+    test = Test.objects.get(pk=test_id)
+    answers = list(request.POST.values())
+
+    correct_answers = Answer.objects.filter(correct=True).filter(pk__in=answers).count()
+
+    test_results = TestResult(wrong_answer=len(answers) - correct_answers, correct_answer=correct_answers,
+                              test=test)
+    test_results.save()
+
+    return render(request, "home.html")
+
+
 def show_test_result(request, test_result_id):
     test_result = TestResult.objects.get(pk=test_result_id)
     percent_test_score = int(test_result.correct_answer / (test_result.correct_answer + test_result.wrong_answer) * 100)
-    result_comment = ""
+
     if percent_test_score < 30:
         result_comment = "Mogło byś lepiej"
     elif 30 < percent_test_score < 70:
