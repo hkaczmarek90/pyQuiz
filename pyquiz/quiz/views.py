@@ -109,5 +109,13 @@ def start_test(request, quiz_id):
 def show_test_result(request, test_result_id):
     test_result = TestResult.objects.get(pk=test_result_id)
     percent_test_score = int(test_result.correct_answer / (test_result.correct_answer + test_result.wrong_answer) * 100)
+    result_comment = ""
+    if percent_test_score < 30:
+        result_comment = "Mogło byś lepiej"
+    elif 30 < percent_test_score < 70:
+        result_comment = "Całkiem dobrze"
+    else:
+        result_comment = "Świetny wynik"
     return render(request, 'test_result.html', {'test_result': test_result,
-                                                'percent_test_score': percent_test_score})
+                                                'percent_test_score': percent_test_score,
+                                                'result_comment': result_comment})
