@@ -27,7 +27,9 @@ def create_quiz(request):
         messages.add_message(request, messages.INFO, 'You Must Be Logged To Use This Function')
         return redirect('home')
 
-    form = QuizForm()
+    else:
+        form = QuizForm()
+        messages.add_message(request, messages.INFO, 'Welcome. Now You Can Create Your Own Quizz.')
     return render(request, 'quiz_add.html', {'form': form})
 
 
@@ -49,10 +51,16 @@ def save_quiz(request):
 
 
 def quizzes(request):
-    if request.user.is_authenticated:
+    if not request.user.is_authenticated:
+        messages.add_message(request, messages.INFO,
+                             'Welcome To Our Site. Now You Are Logged Out. You Can Only Use Our Public Quizzes. To Use Personal Quizzes Please Logg In.')
         quizzes = Quiz.objects.all()
         return render(request, 'quizzes.html', {'quizzes': quizzes})
-    quizzes = Quiz.objects.filter(public=True)
+    else:
+
+        quizzes = Quiz.objects.filter(public=True)
+        messages.add_message(request, messages.INFO,
+                             'Welcome To Our Site. You Are Already Logged In. You Can Use Both Public And Personal Quizzes.')
     return render(request, 'quizzes.html', {'quizzes': quizzes})
 
 
@@ -76,6 +84,7 @@ def save_question(request, id):
 def add_answer(request, id):
     question = Question.objects.get(pk=id)
     formset = AnswerFormset(instance=question)
+    messages.add_message(request, messages.INFO, 'Your Added New Question.')
     return render(request, 'add_answer.html', {'formset': formset,
                                                'question': question})
 
@@ -84,6 +93,7 @@ def add_answer(request, id):
 def add_question(request, id):
     quiz = Quiz.objects.get(pk=id)
     form = QuestionForm(instance=quiz)
+    messages.add_message(request, messages.INFO, 'Now You Can Add New Question.')
     return render(request, 'add_question.html', {"form": form, 'quiz': quiz})
 
 
